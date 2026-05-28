@@ -81,7 +81,7 @@
       </p>
       <div class="hero-form">
         <input class="inp" type="email" id="heroEmail" placeholder="이메일 주소를 입력하세요" />
-        <button class="btn-hero" onclick="register('heroEmail','heroSuccess')">사전 등록 →</button>
+        <button class="btn-hero" id="heroBtn" onclick="register('heroEmail','heroSuccess')">사전 등록 →</button>
       </div>
       <p class="form-note"><i class="fas fa-lock"></i>&nbsp; 스팸 없음 · 언제든 해지 가능 · 런칭 시 <strong style="color:var(--gold)">3개월 무료</strong> 제공</p>
       <div id="heroSuccess" class="success-box" style="margin-top:12px">
@@ -233,7 +233,7 @@
       <div>
         <div class="feat-num">Feature 01 · 종목 분석</div>
         <h2 class="feat-title">모든 종목을<br><span class="grad-gold">한 화면</span>에서</h2>
-        <p class="feat-desc">AI가 실시간으로 재무지표, 기술지표, 뉴스 감정, 내부자 매매까지 종합 분석합니다. 복잡한 데이터를 쉬운 언어로 정리해 드립니다.</p>
+        <p class="feat-desc">AI가 실시간으로 재무지표, 기술지표, 뉴스 감정, 내부자 매매까지 종합 분석합니다. 복잡한 데이터를 쉽은 언어로 정리해 드립니다.</p>
         <ul class="feat-list">
           <li><div class="check-icon"><i class="fas fa-check"></i></div>실시간 주가 · SMA · 52주 포지션 한눈에</li>
           <li><div class="check-icon"><i class="fas fa-check"></i></div>매출·이익·EPS 전망 및 분기 실적 자동 요약</li>
@@ -334,7 +334,7 @@
             </div>
             <div class="etf-row"><div class="etf-dot" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff">SPY</div><div class="etf-info"><div class="etf-info-t">S&amp;P 500 ETF Trust</div><div class="etf-info-s">운용보수 0.09% · 중간 위험</div></div><div class="etf-ret" style="color:var(--green)">+24.3%</div><div class="etf-badge-sm badge badge-buy">매수</div></div>
             <div class="etf-row"><div class="etf-dot" style="background:linear-gradient(135deg,#d97706,#f59e0b);color:#000">QQQ</div><div class="etf-info"><div class="etf-info-t">Nasdaq 100 ETF</div><div class="etf-info-s">운용보수 0.20% · 높은 위험</div></div><div class="etf-ret" style="color:var(--green)">+28.7%</div><div class="etf-badge-sm badge badge-buy">매수</div></div>
-            <div class="etf-row"><div class="etf-dot" style="background:linear-gradient(135deg,#059669,#10b981);color:#fff">SCHD</div><div class="etf-info"><div class="etf-info-t">배당 성장 ETF</div><div class="etf-info-s">운용보수 0.06% · 낮은 위험</div></div><div class="etf-ret" style="color:var(--green)">+15.6%</div><div class="etf-badge-sm badge badge-buy">매수</div></div>
+            <div class="etf-row"><div class="etf-dot" style="background:linear-gradient(135deg,#059669,#10b981);color:#fff">SCHD</div><div class="etf-info"><div class="etf-info-t">배당 성장 ETF</div><div class="etf-info-s">운용보수 0.06% · 낙은 위험</div></div><div class="etf-ret" style="color:var(--green)">+15.6%</div><div class="etf-badge-sm badge badge-buy">매수</div></div>
             <div style="margin-top:10px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(5,150,105,.08));border:1px solid rgba(16,185,129,.2);border-radius:var(--r-md);padding:10px 12px"><div style="font-size:10px;color:var(--t4);margin-bottom:4px">월 50만원 × 20년 시뮬레이션</div><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;color:var(--t3)">예상 최종 자산</span><span style="font-family:'Inter',sans-serif;font-size:20px;font-weight:900;color:var(--green)">₩3.8억</span></div></div>
           </div>
         </div>
@@ -429,7 +429,7 @@
         </div>
         <div class="mcard-tag tag-blue">성장주 발굴의 전설</div>
         <div class="mcard-name">Peter Lynch</div>
-        <div class="mcard-ko">피터 린치 · 마젤란 펀드</div>
+        <div class="mcard-ko">피터 린치 · 마젬란 펀드</div>
         <div class="mcard-quote">"당신이 이해할 수 없는 기업에는 절대 투자하지 마라"</div>
         <div class="mcard-tags"><span class="ctag">PEG &lt; 1.0</span><span class="ctag">성장률 &gt; 20%</span><span class="ctag">10배 주식</span><span class="ctag">GARP 전략</span></div>
       </div>
@@ -470,7 +470,7 @@
         <div class="mcard-tag tag-purple">리스크 관리의 대가</div>
         <div class="mcard-name">Howard Marks</div>
         <div class="mcard-ko">하워드 막스 · Oaktree Capital</div>
-        <div class="mcard-quote">"리스크를 제어하는 것이 탁월한 수익의 핵심이다"</div>
+        <div class="mcard-quote">"리스크를 제어하는 것이 툃월한 수익의 핵심이다"</div>
         <div class="mcard-tags"><span class="ctag">시장 사이클</span><span class="ctag">역발상 투자</span><span class="ctag">2차원적 사고</span><span class="ctag">안전마진</span></div>
       </div>
     </div>
@@ -533,15 +533,31 @@
 <section class="cta-section" id="register">
   <div class="cta-glow"></div>
   <div class="container" style="position:relative;z-index:1">
-    <div class="cta-urgency"><i class="fas fa-fire"></i>&nbsp; 사전 등록 마감 임박 — 선착순 5,000명 한정</div>
+    <div class="cta-urgency"><i class="fas fa-fire"></i>&nbsp; 사전 등록 마감 임박 — 선연순 5,000명 한정</div>
     <h2 class="cta-title">지금 등록하면<br><span class="grad-gold">3개월 무료</span>로 시작합니다</h2>
-    <p class="cta-sub">런칭 사전 등록자에게 독점 혜택을 드립니다.<br>은퇴까지 10~20년, 지금이 가장 중요한 타이밍입니다.</p>
+    <p class="cta-sub">런칭 사전 등록자에게 독점 혁택을 드립니다.<br>은퇴까지 10~20년, 지금이 가장 중요한 타이밍입니다.</p>
     <div class="cta-form">
       <input class="inp" type="email" id="ctaEmail" placeholder="이메일 주소를 입력하세요" />
-      <button class="btn-hero" onclick="register('ctaEmail','ctaSuccess')">무료로 시작하기 →</button>
+      <button class="btn-hero" id="ctaBtn" onclick="register('ctaEmail','ctaSuccess')">무료로 시작하기 →</button>
     </div>
-    <p class="cta-note"><i class="fas fa-shield-halved"></i>&nbsp; 개인정보는 안전하게 보호됩니다 · 언제든 해지 가능</p>
+    <div class="suggest-wrap">
+      <textarea class="inp inp-suggest" id="suggestion" placeholder="바라는 기능이나 서비스에 대한 의견을 자유롭게 적어주세요 (선택사항)"></textarea>
+      <div class="suggest-hint"><i class="fas fa-lightbulb"></i>&nbsp; 여러분의 의견이 서비스 개발 방향에 직접 반영됩니다</div>
+    </div>
+    <p class="cta-note" style="margin-top:14px"><i class="fas fa-shield-halved"></i>&nbsp; 개인정보는 안전하게 보호됩니다 · 언제든 해지 가능</p>
     <div id="ctaSuccess" class="success-box" style="margin-top:16px"><i class="fas fa-check-circle"></i>&nbsp; 등록 완료! 런칭 시 가장 먼저 안내드리겠습니다 🎉</div>
+    <div class="suggest-section reveal">
+      <h3><span class="grad-gold">원하는 기능</span>을 알려주세요</h3>
+      <p>어떤 기능이 가장 필요한가요? 클릭해서 선택하거나 위에 직접 입력하세요.</p>
+      <div class="suggest-grid">
+        <div class="suggest-chip" onclick="toggleChip(this,'AI 종목 추천')">AI 종목 추천</div>
+        <div class="suggest-chip" onclick="toggleChip(this,'버핏/린치/막스 전략 비교')">버핏/린치/막스 전략 비교</div>
+        <div class="suggest-chip" onclick="toggleChip(this,'연금·IRP 포트폴리오 설계')">연금·IRP 포트폴리오 설계</div>
+        <div class="suggest-chip" onclick="toggleChip(this,'실시간 매수/매도 알림')">실시간 매수/매도 알림</div>
+        <div class="suggest-chip" onclick="toggleChip(this,'ETF 자동 리밸런싱')">ETF 자동 리밸런싱</div>
+        <div class="suggest-chip" onclick="toggleChip(this,'뉴스·공시 요약 AI')">뉴스·공시 요약 AI</div>
+      </div>
+    </div>
     <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:720px;margin-left:auto;margin-right:auto">
       <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold);margin-bottom:6px">3개월</div><div style="font-size:13px;color:var(--t3)">프리미엄 무료 이용</div></div>
       <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--blue);margin-bottom:6px">우선</div><div style="font-size:13px;color:var(--t3)">베타 사용자 초청</div></div>
@@ -557,7 +573,7 @@
       <div class="foot-logo"><div class="logo-icon" style="width:28px;height:28px;font-size:12px"><i class="fas fa-chart-line"></i></div>InvestMaster<span style="color:var(--gold)">Pro</span></div>
       <p class="foot-tagline">대가의 눈으로 보는 시장, 나만의 투자 전략</p>
       <div class="foot-links"><a href="#">서비스 소개</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">문의하기</a></div>
-      <p class="foot-copy">© 2026 InvestMaster Pro. All rights reserved.</p>
+      <p class="foot-copy">&copy; 2026 InvestMaster Pro. All rights reserved.</p>
       <p class="foot-disc">본 서비스는 투자 참고 정보를 제공하며, 투자 권유나 금융 상품 추천이 아닙니다. 모든 투자의 최종 결정과 책임은 투자자 본인에게 있으며, 투자 전 반드시 전문가와 상담하시기 바랍니다.</p>
     </div>
   </div>
