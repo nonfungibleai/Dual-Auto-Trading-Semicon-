@@ -1,7 +1,7 @@
 // ── Config ──
 // 1) https://formspree.io 에서 무료 계정 생성 → New Form 클릭
 // 2) 아래에 발급받은 엔드포인트를 붙여넣으세요 (예: 'https://formspree.io/f/xabc1234')
-const FORMSPREE_ENDPOINT = '';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgoqdaen';
 
 // ── Progress bar ──
 window.addEventListener('scroll', () => {
