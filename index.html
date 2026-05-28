@@ -8,3 +8,617 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<!-- STOCK TICKER BANNER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="tick pos">AAPL <b>$213.40</b> ▲2.1%</span>
+    <span class="tick neg">TSLA <b>$248.70</b> ▼1.3%</span>
+    <span class="tick pos">NVDA <b>$892.50</b> ▲3.8%</span>
+    <span class="tick pos">MSFT <b>$418.20</b> ▲0.9%</span>
+    <span class="tick neg">AMZN <b>$194.30</b> ▼0.4%</span>
+    <span class="tick pos">GOOGL <b>$178.90</b> ▲1.5%</span>
+    <span class="tick pos">META <b>$542.10</b> ▲2.7%</span>
+    <span class="tick neg">BA <b>$224.30</b> ▼0.8%</span>
+    <span class="tick pos">BRK.B <b>$398.50</b> ▲0.6%</span>
+    <span class="tick pos">JPM <b>$212.80</b> ▲1.2%</span>
+  </div>
+</div>
+
+<!-- Progress bar -->
+<div id="prog" style="position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#d97706,#f59e0b);z-index:200;width:0;transition:width .1s linear"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        InvestMaster<span class="logo-accent">Pro</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">기능 소개</a></li>
+        <li><a href="#masters">대가의 전략</a></li>
+        <li><a href="#how">이용 방법</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="btn-nav" onclick="scrollToForm()">사전 등록하기</button>
+        <button class="nav-tog" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#features" onclick="closeNav()">기능 소개</a>
+  <a href="#masters" onclick="closeNav()">대가의 전략</a>
+  <a href="#how" onclick="closeNav()">이용 방법</a>
+  <button class="btn-nav" style="margin-top:8px" onclick="scrollToForm();closeNav()">사전 등록하기</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="heroCanvas" style="position:absolute;inset:0;z-index:0;pointer-events:none"></canvas>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="live-dot"></div>
+        <span>40·50대를 위한 프리미엄 AI 투자 플랫폼 — 사전 등록 진행 중</span>
+      </div>
+      <h1>
+        버핏이 40대에<br>
+        <span class="grad-gold" id="typeTarget"></span><br>
+        지금 당신도 할 수 있습니다
+      </h1>
+      <p class="hero-sub">
+        은퇴는 다가오고, 은행 이자는 부족합니다.<br>
+        <strong>워런 버핏 · 피터 린치 · 하워드 막스</strong>의 검증된 투자 철학을<br>
+        AI가 분석해 나만의 포트폴리오를 제안합니다.
+      </p>
+      <div class="hero-form">
+        <input class="inp" type="email" id="heroEmail" placeholder="이메일 주소를 입력하세요" />
+        <button class="btn-hero" onclick="register('heroEmail','heroSuccess')">사전 등록 →</button>
+      </div>
+      <p class="form-note"><i class="fas fa-lock"></i>&nbsp; 스팸 없음 · 언제든 해지 가능 · 런칭 시 <strong style="color:var(--gold)">3개월 무료</strong> 제공</p>
+      <div id="heroSuccess" class="success-box" style="margin-top:12px">
+        <i class="fas fa-check-circle"></i>&nbsp; 등록 완료! 런칭 시 이메일로 안내드리겠습니다 🎉
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="h-stat-num"><em>3,241</em>명</div>
+          <div class="h-stat-label">현재 사전 등록자</div>
+        </div>
+        <div>
+          <div class="h-stat-num"><em>15,000</em>+</div>
+          <div class="h-stat-label">분석 가능 종목</div>
+        </div>
+        <div>
+          <div class="h-stat-num"><em>+23.4</em>%</div>
+          <div class="h-stat-label">버핏 전략 연평균 수익률</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="container">
+    <div class="reveal">
+      <p style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">혹시 이런 고민이 있으신가요?</p>
+      <h2 class="sec-title">많은 40·50대 투자자들의<br>공통된 고민입니다</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal d1">
+        <div class="pain-illust">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="p-svg">
+            <circle cx="40" cy="18" r="12" fill="#fde8c8" stroke="#e0b890" stroke-width="1.5"/>
+            <path d="M 28 12 Q 40 4 52 12 Q 52 8 40 5 Q 28 8 28 12 Z" fill="#555"/>
+            <path d="M 33 15 Q 36 13 38 15" stroke="#c0905060" stroke-width="1.5" fill="none"/>
+            <path d="M 42 15 Q 44 13 47 15" stroke="#c0905060" stroke-width="1.5" fill="none"/>
+            <path d="M 34 21 Q 40 19 46 21" stroke="#c08060" stroke-width="1.5" fill="none"/>
+            <rect x="32" y="30" width="16" height="20" rx="4" fill="#4a6fa5"/>
+            <line x1="32" y1="35" x2="20" y2="45" stroke="#fde8c8" stroke-width="5" stroke-linecap="round"/>
+            <line x1="48" y1="35" x2="60" y2="45" stroke="#fde8c8" stroke-width="5" stroke-linecap="round"/>
+            <rect x="12" y="48" width="56" height="4" rx="2" fill="#333"/>
+            <rect x="28" y="54" width="24" height="16" rx="2" fill="#1a2535" stroke="#333" stroke-width="1"/>
+            <rect x="30" y="56" width="20" height="11" rx="1" fill="#0d1a2a"/>
+            <line x1="32" y1="59" x2="47" y2="59" stroke="#3b82f6" stroke-width="1.5"/>
+            <line x1="32" y1="62" x2="44" y2="62" stroke="#f59e0b" stroke-width="1.5"/>
+            <line x1="32" y1="65" x2="46" y2="65" stroke="#10b981" stroke-width="1"/>
+            <text x="14" y="34" fill="#f59e0b" font-size="10" font-weight="bold" opacity="0.8">?</text>
+            <text x="62" y="30" fill="#3b82f6" font-size="8" font-weight="bold" opacity="0.7">?</text>
+          </svg>
+        </div>
+        <div class="pain-icon"><i class="fas fa-question"></i></div>
+        <div>
+          <h4>어디서부터 시작해야 할지 막막하다</h4>
+          <p>주식 투자는 하고 싶은데, 어떤 종목을 어떻게 골라야 할지 기준이 없습니다.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal d2">
+        <div class="pain-illust">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="p-svg">
+            <circle cx="40" cy="18" r="12" fill="#fde8c8" stroke="#e0b890" stroke-width="1.5"/>
+            <path d="M 34 16 Q 37 18 40 16" stroke="#888" stroke-width="1.5" fill="none"/>
+            <path d="M 40 16 Q 43 18 46 16" stroke="#888" stroke-width="1.5" fill="none"/>
+            <path d="M 35 21 Q 40 20 45 21" stroke="#c08060" stroke-width="1.5" fill="none"/>
+            <ellipse cx="52" cy="14" rx="3" ry="4" fill="#60a5fa" opacity="0.7"/>
+            <rect x="32" y="30" width="16" height="22" rx="4" fill="#6b7280"/>
+            <line x1="48" y1="34" x2="60" y2="42" stroke="#fde8c8" stroke-width="5" stroke-linecap="round"/>
+            <rect x="57" y="40" width="14" height="22" rx="3" fill="#1a1a2e" stroke="#444" stroke-width="1.5"/>
+            <rect x="59" y="43" width="10" height="16" rx="1" fill="#0d1526"/>
+            <polyline points="60,50 63,47 66,52 69,45" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+            <circle cx="18" cy="28" r="10" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <line x1="18" y1="28" x2="18" y2="21" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="18" y1="28" x2="23" y2="30" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="28" r="1.5" fill="#f59e0b"/>
+            <rect x="10" y="60" width="15" height="18" rx="1" fill="white" opacity="0.8" transform="rotate(-15,17,69)"/>
+            <rect x="14" y="62" width="15" height="18" rx="1" fill="white" opacity="0.6" transform="rotate(5,21,71)"/>
+          </svg>
+        </div>
+        <div class="pain-icon"><i class="fas fa-clock"></i></div>
+        <div>
+          <h4>분석할 시간도, 전문 지식도 부족하다</h4>
+          <p>재무제표, 기술지표... 공부할 시간이 없고, 유튜브 정보는 믿기 어렵습니다.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal d3">
+        <div class="pain-illust">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="p-svg">
+            <circle cx="38" cy="18" r="12" fill="#fde8c8" stroke="#e0b890" stroke-width="1.5"/>
+            <path d="M 26 12 Q 38 4 50 12 Q 50 8 38 5 Q 26 8 26 12 Z" fill="#aaa"/>
+            <path d="M 31 14 Q 34 11 37 13" stroke="#888" stroke-width="2" fill="none"/>
+            <path d="M 39 13 Q 42 11 45 14" stroke="#888" stroke-width="2" fill="none"/>
+            <path d="M 33 23 Q 38 20 43 23" stroke="#c08060" stroke-width="1.5" fill="none"/>
+            <rect x="30" y="30" width="16" height="20" rx="4" fill="#7c3aed" opacity="0.8"/>
+            <line x1="30" y1="35" x2="18" y2="44" stroke="#fde8c8" stroke-width="5" stroke-linecap="round"/>
+            <line x1="46" y1="35" x2="58" y2="44" stroke="#fde8c8" stroke-width="5" stroke-linecap="round"/>
+            <ellipse cx="38" cy="60" rx="16" ry="13" fill="#f9a8d4"/>
+            <ellipse cx="50" cy="58" rx="5" ry="4" fill="#f9a8d4"/>
+            <path d="M 38 50 L 36 55 L 40 58 L 37 64" stroke="#ef4444" stroke-width="1.5" fill="none"/>
+            <rect x="35" y="49" width="6" height="2" rx="1" fill="#d4607060"/>
+            <rect x="28" y="70" width="5" height="7" rx="2" fill="#f9a8d4"/>
+            <rect x="34" y="70" width="5" height="7" rx="2" fill="#f9a8d4"/>
+            <rect x="40" y="70" width="5" height="7" rx="2" fill="#f9a8d4"/>
+          </svg>
+        </div>
+        <div class="pain-icon"><i class="fas fa-piggy-bank"></i></div>
+        <div>
+          <h4>연금만으로는 노후가 불안하다</h4>
+          <p>국민연금과 퇴직연금만으로 은퇴 후 생활비를 감당하기 어렵습니다.</p>
+        </div>
+      </div>
+      <div class="pain-card reveal d1">
+        <div class="pain-illust">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="p-svg">
+            <circle cx="40" cy="18" r="12" fill="#fde8c8" stroke="#e0b890" stroke-width="1.5"/>
+            <path d="M 28 12 Q 40 3 52 12 Q 48 6 40 4 Q 32 6 28 12 Z" fill="#8B6914"/>
+            <circle cx="35" cy="17" r="4" fill="white"/>
+            <circle cx="45" cy="17" r="4" fill="white"/>
+            <circle cx="35" cy="17" r="2.5" fill="#3a2818"/>
+            <circle cx="45" cy="17" r="2.5" fill="#3a2818"/>
+            <path d="M 31 12 Q 35 9 38 12" stroke="#666" stroke-width="1.5" fill="none"/>
+            <path d="M 42 11 Q 46 14 49 11" stroke="#666" stroke-width="1.5" fill="none"/>
+            <ellipse cx="40" cy="23" rx="4" ry="3" fill="#c08060" stroke="#a06040" stroke-width="1"/>
+            <rect x="32" y="30" width="16" height="20" rx="4" fill="#059669" opacity="0.8"/>
+            <line x1="48" y1="33" x2="62" y2="28" stroke="#fde8c8" stroke-width="5" stroke-linecap="round"/>
+            <rect x="58" y="18" width="16" height="26" rx="3" fill="#1a1a2e" stroke="#444" stroke-width="1.5"/>
+            <rect x="60" y="21" width="12" height="18" rx="1" fill="#0d1526"/>
+            <polyline points="61,34 63,27 65,32 67,24 70,30" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+            <text x="10" y="22" fill="#3b82f6" font-size="14" font-weight="bold">↑</text>
+            <text x="18" y="38" fill="#ef4444" font-size="14" font-weight="bold">↓</text>
+            <text x="6" y="38" fill="#10b981" font-size="12" font-weight="bold">→</text>
+            <text x="46" y="12" fill="#f59e0b" font-size="16" font-weight="bold" opacity="0.9">?</text>
+          </svg>
+        </div>
+        <div class="pain-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h4>좋은 종목인지 판단하는 기준이 없다</h4>
+          <p>종목을 알아도 지금이 사야 할 타이밍인지, 얼마에 팔아야 할지 모릅니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="feat-block reveal">
+      <div>
+        <div class="feat-num">Feature 01 · 종목 분석</div>
+        <h2 class="feat-title">모든 종목을<br><span class="grad-gold">한 화면</span>에서</h2>
+        <p class="feat-desc">AI가 실시간으로 재무지표, 기술지표, 뉴스 감정, 내부자 매매까지 종합 분석합니다. 복잡한 데이터를 쉬운 언어로 정리해 드립니다.</p>
+        <ul class="feat-list">
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>실시간 주가 · SMA · 52주 포지션 한눈에</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>매출·이익·EPS 전망 및 분기 실적 자동 요약</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>애널리스트 컨센서스 목표주가 · 업사이드 계산</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>뉴스 감정 분석 · 내부자/기관 매매 신호</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>Williams %R · CMF · 거래량 비율 기술지표</li>
+        </ul>
+        <span class="feat-link" onclick="scrollToForm()">사전 등록하고 먼저 써보기 <i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="mockup">
+        <div class="mock-win">
+          <div class="mock-bar">
+            <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+            <span class="mock-url">investmaster.pro / 종목분석</span>
+          </div>
+          <div class="mock-body">
+            <div class="sm-head">
+              <div class="sm-ticker-row">
+                <div class="sm-icon">BA</div>
+                <div>
+                  <div class="sm-name">The Boeing Company</div>
+                  <div class="sm-sub">BA · NYSE · Aerospace &amp; Defense</div>
+                </div>
+              </div>
+              <div class="sm-price">
+                <div class="sm-pnum">$224.30</div>
+                <div class="sm-pchg">▲ +$5.40 (+2.47%)</div>
+              </div>
+            </div>
+            <div class="sm-bar-bg"><div class="sm-bar-fill"></div></div>
+            <div class="sm-range"><span>저점 $176.77</span><span>현재 61.3%</span><span>고점 $254.35</span></div>
+            <div class="sm-perf">
+              <div class="sm-p"><div class="sm-p-l">1D</div><div class="sm-p-v pos">+2.5%</div></div>
+              <div class="sm-p"><div class="sm-p-l">1W</div><div class="sm-p-v pos">+0.9%</div></div>
+              <div class="sm-p"><div class="sm-p-l">1M</div><div class="sm-p-v neg">-2.8%</div></div>
+              <div class="sm-p"><div class="sm-p-l">3M</div><div class="sm-p-v neg">-2.2%</div></div>
+              <div class="sm-p"><div class="sm-p-l">6M</div><div class="sm-p-v pos">+25.2%</div></div>
+              <div class="sm-p"><div class="sm-p-l">1Y</div><div class="sm-p-v pos">+18.4%</div></div>
+            </div>
+            <div class="sm-metrics">
+              <div class="sm-met"><div class="sm-met-l">목표주가</div><div class="sm-met-v" style="color:var(--green)">$270</div></div>
+              <div class="sm-met"><div class="sm-met-l">업사이드</div><div class="sm-met-v" style="color:var(--gold)">+20.4%</div></div>
+              <div class="sm-met"><div class="sm-met-l">매수의견</div><div class="sm-met-v">100%</div></div>
+            </div>
+            <div class="sm-sig-row"><span class="sm-sig-l">기관 보유</span><span class="badge badge-buy">높음 75.3%</span></div>
+            <div class="sm-sig-row"><span class="sm-sig-l">내부자 매매</span><span class="badge badge-neut">중립</span></div>
+            <div class="sm-overall"><span class="sm-ov-l">종합 판단</span><span class="sm-ov-v">중립</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--border2);margin:8px 0"></div>
+    <div class="feat-block rev reveal">
+      <div class="mockup">
+        <div class="mock-win">
+          <div class="mock-bar">
+            <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+            <span class="mock-url">investmaster.pro / 대가의투자법</span>
+          </div>
+          <div class="mock-body">
+            <div class="mm-tabs">
+              <div class="mm-tab act">워런 버핏</div>
+              <div class="mm-tab">피터 린치</div>
+              <div class="mm-tab">하워드 막스</div>
+            </div>
+            <div class="mm-master">
+              <div class="mm-av av-gold">WB</div>
+              <div class="mm-info"><h5>Warren Buffett</h5><p>가치투자의 신 · 오마하의 현인</p></div>
+              <div class="mm-ret"><div class="mm-ret-v">+18.4%</div><div class="mm-ret-l">YTD</div></div>
+            </div>
+            <div class="mm-quote">"가격은 내가 지불하는 것이고, 가치는 내가 얻는 것이다"</div>
+            <div class="mm-grid">
+              <div class="mm-crit"><div class="mm-crit-l">ROE</div><div class="mm-crit-v pos">> 15%</div></div>
+              <div class="mm-crit"><div class="mm-crit-l">부채비율</div><div class="mm-crit-v pos">< 50%</div></div>
+              <div class="mm-crit"><div class="mm-crit-l">P/E 배수</div><div class="mm-crit-v warn">합리적</div></div>
+              <div class="mm-crit"><div class="mm-crit-l">경제적 해자</div><div class="mm-crit-v pos">필수</div></div>
+            </div>
+            <div style="margin-top:10px;background:var(--surface);border-radius:var(--r-md);padding:10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:11px;color:var(--t3)">포트폴리오 수익률 (3Y)</span>
+              <span style="font-family:'Inter',sans-serif;font-size:18px;font-weight:900;color:var(--green)">+87.3%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">Feature 02 · 대가의 투자법</div>
+        <h2 class="feat-title">전설 투자자의 눈으로<br><span class="grad-blue">종목을 보다</span></h2>
+        <p class="feat-desc">버핏의 가치투자, 린치의 성장주 발굴, 막스의 리스크 관리 — 세 대가의 전략을 AI가 현재 시장에 적용해 포트폴리오를 자동 구성합니다.</p>
+        <ul class="feat-list">
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>버핏 전략: ROE·PER·경제적 해자 스크리닝</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>린치 전략: PEG < 1 성장주 자동 발굴</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>막스 전략: 시장 사이클 7단계 리스크 관리</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>전략별 포트폴리오 실시간 수익 추적</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>S&P 500 대비 초과 수익 분석</li>
+        </ul>
+        <span class="feat-link" onclick="scrollToForm()">내 포트폴리오 미리 구성해보기 <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </div>
+    <div style="height:1px;background:var(--border2);margin:8px 0"></div>
+    <div class="feat-block reveal">
+      <div>
+        <div class="feat-num">Feature 03 · 연금·ETF 플래너</div>
+        <h2 class="feat-title">20년 후를<br><span class="grad-gold">지금 설계하다</span></h2>
+        <p class="feat-desc">IRP·퇴직연금·ETF를 하나의 플랫폼에서. 중기(5-10년)와 장기(20년+) 플랜을 투자 성향에 맞게 자동으로 제안하고, 예상 수익을 시뮬레이션합니다.</p>
+        <ul class="feat-list">
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>투자 성향별 자산 배분 자동 최적화</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>ETF 종목 심층 분석 (수익률·운용보수·리스크)</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>월 적립식 복리 수익 시뮬레이터</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>국내외 ETF 통합 비교 (TIGER·KODEX·SPY·QQQ)</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div>IRP 세액공제 최적화 가이드</li>
+        </ul>
+        <span class="feat-link" onclick="scrollToForm()">내 노후 자산 미리 계산해보기 <i class="fas fa-arrow-right"></i></span>
+      </div>
+      <div class="mockup">
+        <div class="mock-win">
+          <div class="mock-bar">
+            <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+            <span class="mock-url">investmaster.pro / 연금·ETF</span>
+          </div>
+          <div class="mock-body">
+            <div class="etf-alloc">
+              <h5>자산 배분 현황 <span style="color:var(--t4);font-weight:400;font-size:10px">(중립형 포트폴리오)</span></h5>
+              <div class="alloc-item"><span class="alloc-label">해외 주식</span><div class="alloc-track"><div class="alloc-fill" style="width:40%;background:linear-gradient(90deg,#1d4ed8,#7c3aed)"></div></div><span class="alloc-pct">40%</span></div>
+              <div class="alloc-item"><span class="alloc-label">국내 주식</span><div class="alloc-track"><div class="alloc-fill" style="width:20%;background:linear-gradient(90deg,#059669,#10b981)"></div></div><span class="alloc-pct">20%</span></div>
+              <div class="alloc-item"><span class="alloc-label">채 권</span><div class="alloc-track"><div class="alloc-fill" style="width:25%;background:linear-gradient(90deg,#d97706,#f59e0b)"></div></div><span class="alloc-pct">25%</span></div>
+              <div class="alloc-item"><span class="alloc-label">대체자산</span><div class="alloc-track"><div class="alloc-fill" style="width:15%;background:linear-gradient(90deg,#7c3aed,#a78bfa)"></div></div><span class="alloc-pct">15%</span></div>
+            </div>
+            <div class="etf-row">
+              <div class="etf-dot" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff">SPY</div>
+              <div class="etf-info"><div class="etf-info-t">S&amp;P 500 ETF Trust</div><div class="etf-info-s">운용보수 0.09% · 중간 위험</div></div>
+              <div class="etf-ret" style="color:var(--green)">+24.3%</div>
+              <div class="etf-badge-sm badge badge-buy">매수</div>
+            </div>
+            <div class="etf-row">
+              <div class="etf-dot" style="background:linear-gradient(135deg,#d97706,#f59e0b);color:#000">QQQ</div>
+              <div class="etf-info"><div class="etf-info-t">Nasdaq 100 ETF</div><div class="etf-info-s">운용보수 0.20% · 높은 위험</div></div>
+              <div class="etf-ret" style="color:var(--green)">+28.7%</div>
+              <div class="etf-badge-sm badge badge-buy">매수</div>
+            </div>
+            <div class="etf-row">
+              <div class="etf-dot" style="background:linear-gradient(135deg,#059669,#10b981);color:#fff">SCHD</div>
+              <div class="etf-info"><div class="etf-info-t">배당 성장 ETF</div><div class="etf-info-s">운용보수 0.06% · 낮은 위험</div></div>
+              <div class="etf-ret" style="color:var(--green)">+15.6%</div>
+              <div class="etf-badge-sm badge badge-buy">매수</div>
+            </div>
+            <div style="margin-top:10px;background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(5,150,105,.08));border:1px solid rgba(16,185,129,.2);border-radius:var(--r-md);padding:10px 12px">
+              <div style="font-size:10px;color:var(--t4);margin-bottom:4px">월 50만원 × 20년 시뮬레이션</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12px;color:var(--t3)">예상 최종 자산</span>
+                <span style="font-family:'Inter',sans-serif;font-size:20px;font-weight:900;color:var(--green)">₩3.8억</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASTERS PREVIEW -->
+<section class="masters" id="masters">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <p style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">세 전설의 투자 철학</p>
+      <h2 class="sec-title">그들은 어떻게<br><span class="grad-gold">부를 만들었는가</span></h2>
+      <p class="sec-sub" style="margin-top:12px">검증된 투자 원칙을 AI가 현재 시장에 적용합니다</p>
+    </div>
+    <div class="masters-grid">
+      <div class="mcard mcard-gold reveal d1">
+        <div class="caric-wrap">
+          <svg viewBox="0 0 160 180" class="caric-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="wbFace" cx="45%" cy="35%" r="60%"><stop offset="0%" stop-color="#fde8c8"/><stop offset="100%" stop-color="#f0c498"/></radialGradient></defs>
+            <ellipse cx="80" cy="44" rx="46" ry="30" fill="#e8e8e8"/>
+            <ellipse cx="80" cy="38" rx="40" ry="24" fill="#f2f2f2"/>
+            <ellipse cx="38" cy="58" rx="13" ry="20" fill="#e8e8e8"/>
+            <ellipse cx="122" cy="58" rx="13" ry="20" fill="#e8e8e8"/>
+            <ellipse cx="80" cy="98" rx="50" ry="58" fill="url(#wbFace)"/>
+            <ellipse cx="28" cy="98" rx="10" ry="15" fill="#f0c498"/>
+            <ellipse cx="132" cy="98" rx="10" ry="15" fill="#f0c498"/>
+            <path d="M 50 72 Q 62 68 72 70" stroke="#bbb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M 88 70 Q 98 68 110 72" stroke="#bbb" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <circle cx="64" cy="86" r="17" fill="rgba(180,220,255,0.12)" stroke="#444" stroke-width="3"/>
+            <circle cx="100" cy="86" r="17" fill="rgba(180,220,255,0.12)" stroke="#444" stroke-width="3"/>
+            <path d="M 81 86 Q 82.5 84 84 86" stroke="#444" stroke-width="2.5" fill="none"/>
+            <line x1="47" y1="84" x2="38" y2="82" stroke="#444" stroke-width="2.5"/>
+            <line x1="117" y1="84" x2="126" y2="82" stroke="#444" stroke-width="2.5"/>
+            <circle cx="64" cy="86" r="5" fill="#3a2818"/>
+            <circle cx="100" cy="86" r="5" fill="#3a2818"/>
+            <circle cx="65.5" cy="84.5" r="1.8" fill="white" opacity="0.85"/>
+            <circle cx="101.5" cy="84.5" r="1.8" fill="white" opacity="0.85"/>
+            <rect x="47" y="80" width="34" height="12" rx="6" fill="#fde8c8" class="wb-blink" opacity="0"/>
+            <rect x="83" y="80" width="34" height="12" rx="6" fill="#fde8c8" class="wb-blink" opacity="0"/>
+            <ellipse cx="80" cy="104" rx="9" ry="7" fill="#e8b898"/>
+            <path d="M 52 118 Q 80 142 108 118" stroke="#c08060" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <path d="M 56 120 Q 80 140 104 120 L 104 126 Q 80 146 56 126 Z" fill="white"/>
+            <ellipse cx="42" cy="110" rx="11" ry="8" fill="#f09090" opacity="0.25"/>
+            <ellipse cx="118" cy="110" rx="11" ry="8" fill="#f09090" opacity="0.25"/>
+            <rect x="68" y="148" width="24" height="18" rx="3" fill="#f0c498"/>
+            <path d="M 10 180 L 42 158 L 65 148 L 80 162 L 95 148 L 118 158 L 150 180 Z" fill="#1a3a6a"/>
+            <path d="M 65 148 L 80 170 L 95 148 L 80 156 Z" fill="white"/>
+            <path d="M 76 156 L 80 178 L 84 156 Z" fill="#cc2200"/>
+            <rect x="74" y="153" width="12" height="8" rx="3" fill="#cc2200"/>
+          </svg>
+        </div>
+        <div class="mcard-tag tag-gold">가치투자의 신</div>
+        <div class="mcard-name">Warren Buffett</div>
+        <div class="mcard-ko">워런 버핏 · 오마하의 현인</div>
+        <div class="mcard-quote">"10년을 보유할 각오가 없다면, 10분도 보유하지 마라"</div>
+        <div class="mcard-tags">
+          <span class="ctag">경제적 해자</span><span class="ctag">ROE &gt; 15%</span><span class="ctag">안전마진</span><span class="ctag">장기 보유</span>
+        </div>
+      </div>
+      <div class="mcard mcard-blue reveal d2">
+        <div class="caric-wrap">
+          <svg viewBox="0 0 160 180" class="caric-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="plFace" cx="45%" cy="35%" r="60%"><stop offset="0%" stop-color="#fde0c0"/><stop offset="100%" stop-color="#eec080"/></radialGradient></defs>
+            <ellipse cx="80" cy="42" rx="50" ry="28" fill="#8B7355"/>
+            <ellipse cx="80" cy="36" rx="44" ry="22" fill="#9B8365"/>
+            <ellipse cx="32" cy="58" rx="12" ry="18" fill="#8B7355"/>
+            <ellipse cx="128" cy="58" rx="12" ry="18" fill="#8B7355"/>
+            <ellipse cx="80" cy="100" rx="48" ry="58" fill="url(#plFace)"/>
+            <ellipse cx="30" cy="100" rx="9" ry="13" fill="#eec080"/>
+            <ellipse cx="130" cy="100" rx="9" ry="13" fill="#eec080"/>
+            <path d="M 50 73 Q 63 67 74 70" stroke="#6B5335" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 86 70 Q 97 67 110 73" stroke="#6B5335" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="65" cy="87" rx="8" ry="7" fill="white"/>
+            <ellipse cx="100" cy="87" rx="8" ry="7" fill="white"/>
+            <circle cx="65" cy="87" r="5" fill="#2a5fb0"/>
+            <circle cx="100" cy="87" r="5" fill="#2a5fb0"/>
+            <circle cx="66.5" cy="85.5" r="2" fill="white" opacity="0.9"/>
+            <circle cx="101.5" cy="85.5" r="2" fill="white" opacity="0.9"/>
+            <ellipse cx="80" cy="104" rx="8" ry="6" fill="#dca878"/>
+            <path d="M 50 118 Q 80 145 110 118" stroke="#b07050" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 54 120 Q 80 144 106 120 L 106 128 Q 80 148 54 128 Z" fill="white"/>
+            <ellipse cx="44" cy="112" rx="12" ry="9" fill="#f0a080" opacity="0.25"/>
+            <ellipse cx="116" cy="112" rx="12" ry="9" fill="#f0a080" opacity="0.25"/>
+            <rect x="68" y="150" width="24" height="18" rx="3" fill="#eec080"/>
+            <path d="M 10 180 L 42 158 L 65 150 L 80 164 L 95 150 L 118 158 L 150 180 Z" fill="#1a4a8a"/>
+            <path d="M 65 150 L 80 172 L 95 150 L 80 158 Z" fill="white"/>
+            <path d="M 76 158 L 80 178 L 84 158 Z" fill="#1d4ed8"/>
+            <rect x="74" y="155" width="12" height="8" rx="3" fill="#1d4ed8"/>
+            <line x1="118" y1="158" x2="148" y2="140" stroke="#eec080" stroke-width="6" stroke-linecap="round"/>
+            <ellipse cx="150" cy="138" rx="5" ry="7" fill="#eec080" transform="rotate(-30,150,138)"/>
+          </svg>
+        </div>
+        <div class="mcard-tag tag-blue">성장주 발굴의 전설</div>
+        <div class="mcard-name">Peter Lynch</div>
+        <div class="mcard-ko">피터 린치 · 마젤란 펀드</div>
+        <div class="mcard-quote">"당신이 이해할 수 없는 기업에는 절대 투자하지 마라"</div>
+        <div class="mcard-tags">
+          <span class="ctag">PEG &lt; 1.0</span><span class="ctag">성장률 &gt; 20%</span><span class="ctag">10배 주식</span><span class="ctag">GARP 전략</span>
+        </div>
+      </div>
+      <div class="mcard mcard-purple reveal d3">
+        <div class="caric-wrap">
+          <svg viewBox="0 0 160 180" class="caric-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="hmFace" cx="45%" cy="35%" r="60%"><stop offset="0%" stop-color="#f8e0c0"/><stop offset="100%" stop-color="#e8c898"/></radialGradient></defs>
+            <ellipse cx="80" cy="40" rx="48" ry="26" fill="#c8c8c8"/>
+            <ellipse cx="80" cy="34" rx="42" ry="20" fill="#d8d8d8"/>
+            <ellipse cx="32" cy="56" rx="12" ry="18" fill="#c8c8c8"/>
+            <ellipse cx="128" cy="56" rx="12" ry="18" fill="#c8c8c8"/>
+            <ellipse cx="80" cy="100" rx="46" ry="58" fill="url(#hmFace)"/>
+            <ellipse cx="32" cy="100" rx="9" ry="13" fill="#e8c898"/>
+            <ellipse cx="128" cy="100" rx="9" ry="13" fill="#e8c898"/>
+            <path d="M 48 74 Q 62 70 74 73" stroke="#777" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 86 73 Q 98 70 112 74" stroke="#777" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="48" y="80" width="26" height="18" rx="7" fill="rgba(200,220,240,0.1)" stroke="#555" stroke-width="2.5"/>
+            <rect x="82" y="80" width="26" height="18" rx="7" fill="rgba(200,220,240,0.1)" stroke="#555" stroke-width="2.5"/>
+            <line x1="74" y1="89" x2="82" y2="89" stroke="#555" stroke-width="2"/>
+            <line x1="48" y1="89" x2="40" y2="87" stroke="#555" stroke-width="2"/>
+            <line x1="108" y1="89" x2="116" y2="87" stroke="#555" stroke-width="2"/>
+            <circle cx="61" cy="89" r="5" fill="#3a3028"/>
+            <circle cx="95" cy="89" r="5" fill="#3a3028"/>
+            <circle cx="62.5" cy="87.5" r="1.8" fill="white" opacity="0.8"/>
+            <circle cx="96.5" cy="87.5" r="1.8" fill="white" opacity="0.8"/>
+            <path d="M 76 100 L 72 112 Q 80 116 88 112 L 84 100" fill="#dca878" stroke="none"/>
+            <path d="M 58 122 Q 80 132 102 122" stroke="#b08860" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <rect x="68" y="150" width="24" height="18" rx="3" fill="#e8c898"/>
+            <path d="M 10 180 L 42 158 L 65 150 L 80 164 L 95 150 L 118 158 L 150 180 Z" fill="#1a1a3a"/>
+            <path d="M 65 150 L 80 172 L 95 150 L 80 158 Z" fill="white"/>
+            <path d="M 76 158 L 80 178 L 84 158 Z" fill="#7c3aed"/>
+            <rect x="74" y="155" width="12" height="8" rx="3" fill="#7c3aed"/>
+            <rect x="108" y="158" width="36" height="18" rx="3" fill="#4a0080" transform="rotate(-10,126,167)"/>
+          </svg>
+        </div>
+        <div class="mcard-tag tag-purple">리스크 관리의 대가</div>
+        <div class="mcard-name">Howard Marks</div>
+        <div class="mcard-ko">하워드 막스 · Oaktree Capital</div>
+        <div class="mcard-quote">"리스크를 제어하는 것이 탁월한 수익의 핵심이다"</div>
+        <div class="mcard-tags">
+          <span class="ctag">시장 사이클</span><span class="ctag">역발상 투자</span><span class="ctag">2차원적 사고</span><span class="ctag">안전마진</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps" id="how">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <p style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:12px">3 Simple Steps</p>
+      <h2 class="sec-title">3분 만에 시작하는<br><span class="grad-blue">스마트 투자</span></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal d1"><div class="step-num sn1">1</div><h3>관심 종목 검색</h3><p>티커 또는 기업명으로 검색하면 AI가 즉시 멀티팩터 분석을 시작합니다.</p></div>
+      <div class="step reveal d2"><div class="step-num sn2">2</div><h3>대가의 전략 적용</h3><p>버핏·린치·막스 중 원하는 투자 철학을 선택하면 자동으로 포트폴리오가 구성됩니다.</p></div>
+      <div class="step reveal d3"><div class="step-num sn3">3</div><h3>실시간 성과 확인</h3><p>구성된 포트폴리오의 수익률을 실시간으로 추적하고 리밸런싱 신호를 받습니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE TRADING TERMINAL -->
+<section class="terminal-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:40px">
+      <p style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px">LIVE PLATFORM PREVIEW</p>
+      <h2 class="sec-title">실시간으로 살아 숨쉬는<br><span class="grad-blue">투자 분석 플랫폼</span></h2>
+    </div>
+    <div class="terminal-win reveal">
+      <div class="terminal-topbar">
+        <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <span class="terminal-title"><span class="live-dot" style="display:inline-block;margin-right:6px"></span>INVESTMASTER PRO — LIVE MARKET FEED</span>
+        <span style="font-family:'Inter',sans-serif;font-size:11px;color:var(--t4)" id="termClock"></span>
+      </div>
+      <div class="terminal-body">
+        <div class="term-grid">
+          <div class="term-col"><div class="term-label">MARKET PULSE</div><div id="termFeed" class="term-feed"></div></div>
+          <div class="term-col"><div class="term-label">AI SIGNAL BOARD</div><div id="termSignals" class="term-signals"></div></div>
+          <div class="term-col"><div class="term-label">MASTER PICKS TODAY</div><div id="termPicks" class="term-picks"></div></div>
+        </div>
+        <div class="term-chart-area"><canvas id="termChart" height="80"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STATS -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="reveal d1" style="text-align:center"><div class="tstat-num"><span class="grad-gold">15,847</span></div><div class="tstat-label">분석 가능 종목 수</div></div>
+      <div class="reveal d2" style="text-align:center"><div class="tstat-num"><span class="grad-blue">3,241</span></div><div class="tstat-label">사전 등록 투자자</div></div>
+      <div class="reveal d3" style="text-align:center"><div class="tstat-num" style="color:var(--green)">+23.4%</div><div class="tstat-label">버핏 전략 연평균 수익률</div></div>
+      <div class="reveal d4" style="text-align:center"><div class="tstat-num" style="color:var(--gold)">15초</div><div class="tstat-label">데이터 실시간 업데이트</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section" id="register">
+  <div class="cta-glow"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="cta-urgency"><i class="fas fa-fire"></i>&nbsp; 사전 등록 마감 임박 — 선착순 5,000명 한정</div>
+    <h2 class="cta-title">지금 등록하면<br><span class="grad-gold">3개월 무료</span>로 시작합니다</h2>
+    <p class="cta-sub">런칭 사전 등록자에게 독점 혜택을 드립니다.<br>은퇴까지 10~20년, 지금이 가장 중요한 타이밍입니다.</p>
+    <div class="cta-form">
+      <input class="inp" type="email" id="ctaEmail" placeholder="이메일 주소를 입력하세요" />
+      <button class="btn-hero" onclick="register('ctaEmail','ctaSuccess')">무료로 시작하기 →</button>
+    </div>
+    <p class="cta-note"><i class="fas fa-shield-halved"></i>&nbsp; 개인정보는 안전하게 보호됩니다 · 언제든 해지 가능</p>
+    <div id="ctaSuccess" class="success-box" style="margin-top:16px"><i class="fas fa-check-circle"></i>&nbsp; 등록 완료! 런칭 시 가장 먼저 안내드리겠습니다 🎉</div>
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:720px;margin-left:auto;margin-right:auto">
+      <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gold);margin-bottom:6px">3개월</div><div style="font-size:13px;color:var(--t3)">프리미엄 무료 이용</div></div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--blue);margin-bottom:6px">우선</div><div style="font-size:13px;color:var(--t3)">베타 사용자 초청</div></div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-align:center"><div style="font-size:24px;font-weight:900;color:var(--green);margin-bottom:6px">독점</div><div style="font-size:13px;color:var(--t3)">투자 전략 리포트</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div class="foot-logo"><div class="logo-icon" style="width:28px;height:28px;font-size:12px"><i class="fas fa-chart-line"></i></div>InvestMaster<span style="color:var(--gold)">Pro</span></div>
+      <p class="foot-tagline">대가의 눈으로 보는 시장, 나만의 투자 전략</p>
+      <div class="foot-links"><a href="#">서비스 소개</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a><a href="#">문의하기</a></div>
+      <p class="foot-copy">© 2026 InvestMaster Pro. All rights reserved.</p>
+      <p class="foot-disc">본 서비스는 투자 참고 정보를 제공하며, 투자 권유나 금융 상품 추천이 아닙니다. 모든 투자의 최종 결정과 책임은 투자자 본인에게 있으며, 투자 전 반드시 전문가와 상담하시기 바랍니다.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
