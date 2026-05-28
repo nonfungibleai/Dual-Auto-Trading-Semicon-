@@ -45,12 +45,14 @@ async function register(inputId, successId) {
     return;
   }
 
+  // 버튼 로딩 상태
   const btn = document.getElementById(inputId === 'ctaEmail' ? 'ctaBtn' : 'heroBtn');
   const btnOrig = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = '처리 중...'; }
 
   const suggestion = (document.getElementById('suggestion') || {}).value || '';
 
+  // Formspree 실제 전송
   if (FORMSPREE_ENDPOINT) {
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -75,11 +77,13 @@ async function register(inputId, successId) {
 
   if (btn) { btn.disabled = false; btn.textContent = btnOrig; }
 
+  // localStorage 저장 (중복 제외)
   if (!registered.has(email)) {
     registered.add(email);
     const list = JSON.parse(localStorage.getItem('imp_leads') || '[]');
     list.push({ email, suggestion, ts: new Date().toISOString() });
     localStorage.setItem('imp_leads', JSON.stringify(list));
+    // 카운터 업데이트
     document.querySelectorAll('.h-stat-num em').forEach(el => {
       if (el.parentElement.nextElementSibling?.textContent.includes('사전'))
         el.textContent = (3241 + list.length).toLocaleString();
